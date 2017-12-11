@@ -1,0 +1,14 @@
+<template>
+	<div class="contact-list">
+		<ul class="list-group">
+			<li repeat.for="contact of contacts" class="list-group-item ${contact.id === $parent.selectedId ? 'active' : ''}">
+				<!-- route-href custom attribute provided by aurelia
+				We bind click event to a tag as we're looking for instant user feedback. We want the list selection to happen ASAP, so we don't have to wait on the navigation system or on the loading of the contact data. To accomplish this, we use the select method to track the selected contact's id, which allows us to instantly apply the selection style. -->
+				<a route-href="route: contacts; params.bind: {id:contact.id}" click.delegate="$parent.select(contact)">
+					<h4 class="list-group-item-heading">${contact.firstName} ${contact.lastName}</h4>
+					<p class="list-group-item-text">${contact.email}</p>
+				</a>
+			</li>
+        </ul>
+    </div>
+</template>
